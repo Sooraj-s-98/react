@@ -22,12 +22,17 @@
     color:floralwhite;
 }
 
-.address{
+address{
     font-size:80%;
     margin:0px;
-    color:#0f0f0f;
+    color:#000000;
 }
 
 .navbar-dark {
-    background-color: #e9f53d;
+    background-color: #512DA8;
+}
+.nav-link {
+    padding:10px auto;
+    color:#eb2d2d;
+
 }
