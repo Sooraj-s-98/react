@@ -15,7 +15,7 @@ function RenderDish({dish}) {
         </Card>
     );
   }
-  function RenderComments({comments}) {
+  function RenderComments({comments, addComment, dishId}) {
   var commentList = comments.map(comment => {
       return (
           <li key={comment.id} >
@@ -32,7 +32,7 @@ function RenderDish({dish}) {
                 <ul className="list-unstyled">
                     {commentList}
                 </ul>
-                 <CommentForm />
+                <CommentForm dishId={dishId} addComment={addComment} />
             </div>
         );
     }
@@ -49,14 +49,16 @@ function RenderDish({dish}) {
                 <div className="col-12">
                     <h3>{props.dish.name}</h3>
                     <hr />
-                </div>                
-            </div>
-            <div className="row">
+                </div> 
+                </div>  
+                <div className="row">             
                 <div className="col-12 col-md-5 m-1">
                     <RenderDish dish={props.dish} />
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComments comments={props.comments} />
+                    <RenderComments comments={props.comments}
+                    addComment={props.addComment}
+                    dishId={props.dish.id} />
                 </div>
             </div>
             </div>
@@ -89,9 +91,8 @@ export class CommentForm extends Component {
 
     handleSubmit(values){
         this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
 
-        console.log('comment:', values);
-        alert('comment:' + JSON.stringify(values));
     }
 
     render() {
