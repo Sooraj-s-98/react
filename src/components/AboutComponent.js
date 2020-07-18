@@ -3,7 +3,7 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import { FadeTransform, Stagger } from 'react-animation-components';
 
 function About(props) {
     
@@ -33,7 +33,9 @@ function RenderLeaders() {
 
     function RenderLeader({ leader }) {
         return (
-            <Media tag="li">
+            <FadeTransform in
+            transformProps={{exitTransform: 'scale(0.5) translateY(-50%)' }}>
+            <Media tag="li" >
                 <Media left middle>
                     <Media object src={baseUrl + leader.image} alt={leader.name} />
                 </Media>
@@ -43,6 +45,7 @@ function RenderLeaders() {
                     <p>{leader.description}</p>
                 </Media>
             </Media>
+            </FadeTransform>
         );
     }
 
@@ -85,6 +88,8 @@ function RenderLeaders() {
                 <div className="container">
                     <div className="row">
                       <div className="col-12">
+                      <FadeTransform in
+                           transformProps={{exitTransform: 'scale(0.5) translateY(-50%)' }}>
                          <Card>
                              <CardBody className="bg-faded">
                                 <blockquote className="blockquote">
@@ -97,7 +102,8 @@ function RenderLeaders() {
                                </blockquote>
                              </CardBody>
                          </Card>
-                      </div>
+                         </FadeTransform>
+                         </div>
                     </div>
                 </div>
                 <div className="row row-content">
